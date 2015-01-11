@@ -1,6 +1,7 @@
-class kafka::config inherits kafka {
+class kafka::config (
+  $conf_file = $kafka::conf_file
+)  inherits kafka {
 
-  $conf_file = "${install_dir}/kafka/config/server.properties"
   
   file { $conf_file:
     owner => 'kafka',
