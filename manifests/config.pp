@@ -11,10 +11,4 @@ class kafka::config inherits kafka {
     content => template("kafka/config/server.properties.erb"),
   }
   
-  file { '/etc/init/kafka.conf':
-    content => template("kafka/init/kafka.conf.erb"),
-    mode => "0644",
-    alias => 'kafka-init',
-    require => File[$conf_file],
-  }
 }
