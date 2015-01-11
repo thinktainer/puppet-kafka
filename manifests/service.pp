@@ -21,6 +21,7 @@ class kafka::service inherits kafka {
 
   if $::os =~ /(?i)(centos|redhat)/{
     exec { 'chkconfig --add kafka':
+      path   => ["/sbin"]
       before => Service["kafka"]
     }
   }
