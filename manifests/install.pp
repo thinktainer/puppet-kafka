@@ -19,7 +19,7 @@ class kafka::install inherits kafka {
     ensure => 'directory',
     owner => 'kafka',
     group => 'kafka'
-  }
+  } ->
   
   exec { "untar ${kafka::package::basefilename}":
     command => "tar xfvz ${package_dir}/${kafka::package::basefilename} -C $install_dir",
@@ -29,6 +29,7 @@ class kafka::install inherits kafka {
     user => 'kafka',
     path    => ["/bin", "/usr/bin", "/usr/sbin"],
   }
+
   
   file { "${install_dir}/${kafka::package::basename}":
     ensure => "directory",

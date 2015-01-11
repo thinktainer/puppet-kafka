@@ -1,7 +1,7 @@
 class kafka::service inherits kafka {
 
   $startup_install_path = $::os ? {
-    /(?i)(redhat|centos)/ => '/etc/init.d/kafka.sh',
+    /(?i)(redhat|centos)/ => '/etc/init.d/kafka',
     /(?i)(debian|ubuntu)/ => '/etc/init/kafka.conf',
     default               => undef
   }
@@ -17,6 +17,12 @@ class kafka::service inherits kafka {
     mode => "0644",
     alias => 'kafka-init',
     require => File[$conf_file],
+  }
+
+  if $::os =~ /(?i)(centos|redhat)/{
+    exec { 'chkconfig --add kafka':
+      before => Service["kafka"]
+    }
   }
 
   service { 'kafka':
