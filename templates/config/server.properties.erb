@@ -115,8 +115,8 @@ zookeeper.connection.timeout.ms=1000000
 # https://github.com/myfitnesspal/kafka-statsd-reporter
 # don't forget to build the kafka-statsd-1.0.0.jar jar and add it to the libs/
 #################################################################################
-kafka.metrics.reporters=com.myfitnesspal.kafka.KafkaStatsdMetricsReporter
-kafka.statsd.metrics.reporter.enabled=true
+kafka.metrics.reporters=
+kafka.statsd.metrics.reporter.enabled=false
 kafka.statsd.metrics.host=<%= @statsd_host %>
 kafka.statsd.metrics.port=<%= @statsd_port %>
 kafka.statsd.metrics.group=<%= scope.lookupvar('::hostname') %>
