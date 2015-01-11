@@ -9,8 +9,6 @@ class kafka (
   $statsd_port = $kafka::params::statsd_port,
   $statsd_exclude_regex = $kafka::params::statsd_exclude_regex ) inherits kafka::params {
 
-  require java
-  
   anchor { 'kafka::begin': } ->
   class { '::kafka::package': } ->
   class { '::kafka::install': } ->
