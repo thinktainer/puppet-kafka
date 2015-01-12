@@ -18,6 +18,11 @@ class kafka::service inherits kafka {
     default               => undef
   }
 
+  file { '/var/log/kafka':
+    ensure => directory,
+    owner  => 'kafka',
+    group  => 'kafka',
+  }
 
   file { $startup_install_path:
     content => $startup_file_content,
@@ -37,6 +42,6 @@ class kafka::service inherits kafka {
 
   service { 'kafka':
     ensure => running,
-    require => File['kafka-init'],
+    require => [File['kafka-init'], File['/var/log/kafka']]
   }
 }
